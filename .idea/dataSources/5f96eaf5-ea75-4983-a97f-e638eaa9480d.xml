@@ -19,7 +19,7 @@
     <schema id="6" parent="1" name="performance_schema">
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="7" parent="1" name="routing_app">
+    <schema id="7" parent="1" name="routing_app_development">
       <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="8" parent="1" name="routing_app_test">
@@ -933,80 +933,298 @@
     <table id="236" parent="11" name="blogs">
       <Engine>InnoDB</Engine>
     </table>
-    <table id="237" parent="11" name="schema_migrations">
+    <table id="237" parent="11" name="friendly_id_slugs">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="238" parent="235" name="key">
+    <table id="238" parent="11" name="portfolios">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="239" parent="11" name="schema_migrations">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="240" parent="11" name="skills">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="241" parent="11" name="topics">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="242" parent="235" name="key">
       <Position>1</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="235" name="value">
+    <column id="243" parent="235" name="value">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="235" name="created_at">
+    <column id="244" parent="235" name="created_at">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="235" name="updated_at">
+    <column id="245" parent="235" name="updated_at">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="242" parent="235" name="PRIMARY">
+    <key id="246" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>key</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="243" parent="236" name="id">
+    <column id="247" parent="236" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="244" parent="236" name="title">
+    <column id="248" parent="236" name="title">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="245" parent="236" name="body">
+    <column id="249" parent="236" name="body">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="236" name="created_at">
+    <column id="250" parent="236" name="created_at">
       <Position>4</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="236" name="updated_at">
+    <column id="251" parent="236" name="updated_at">
       <Position>5</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="248" parent="236" name="PRIMARY">
+    <column id="252" parent="236" name="slug">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="236" name="status">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="236" name="topic_id">
+      <Position>8</Position>
+      <DataType>bigint(20)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="255" parent="236" name="index_blogs_on_slug">
+      <ColNames>slug</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="256" parent="236" name="index_blogs_on_topic_id">
+      <ColNames>topic_id</ColNames>
+    </index>
+    <key id="257" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="249" parent="237" name="version">
+    <key id="258" parent="236" name="index_blogs_on_slug">
+      <ColNames>slug</ColNames>
+      <UnderlyingIndexName>index_blogs_on_slug</UnderlyingIndexName>
+    </key>
+    <foreign-key id="259" parent="236" name="fk_rails_7f5637ea0d">
+      <ColNames>topic_id</ColNames>
+      <RefSchemaName>syreeta_thomas_portfolio_development</RefSchemaName>
+      <RefTableName>topics</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="260" parent="237" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="237" name="slug">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="262" parent="237" name="sluggable_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="263" parent="237" name="sluggable_type">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="264" parent="237" name="scope">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="265" parent="237" name="created_at">
+      <Position>6</Position>
+      <DataType>datetime|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="266" parent="237" name="index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope">
+      <ColNames>slug
+sluggable_type
+scope</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="267" parent="237" name="index_friendly_id_slugs_on_slug_and_sluggable_type">
+      <ColNames>slug
+sluggable_type</ColNames>
+    </index>
+    <index id="268" parent="237" name="index_friendly_id_slugs_on_sluggable_id">
+      <ColNames>sluggable_id</ColNames>
+    </index>
+    <index id="269" parent="237" name="index_friendly_id_slugs_on_sluggable_type">
+      <ColNames>sluggable_type</ColNames>
+    </index>
+    <key id="270" parent="237" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="271" parent="237" name="index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope">
+      <ColNames>slug
+sluggable_type
+scope</ColNames>
+      <UnderlyingIndexName>index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope</UnderlyingIndexName>
+    </key>
+    <column id="272" parent="238" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="273" parent="238" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="274" parent="238" name="subtitle">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="275" parent="238" name="body">
+      <Position>4</Position>
+      <DataType>text|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="276" parent="238" name="main_image">
+      <Position>5</Position>
+      <DataType>text|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="277" parent="238" name="thumb_image">
+      <Position>6</Position>
+      <DataType>text|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="278" parent="238" name="created_at">
+      <Position>7</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="279" parent="238" name="updated_at">
+      <Position>8</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="280" parent="238" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="281" parent="239" name="version">
       <Position>1</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="250" parent="237" name="PRIMARY">
+    <key id="282" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="283" parent="240" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="240" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="285" parent="240" name="percent_utilized">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="240" name="created_at">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="240" name="updated_at">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="288" parent="240" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="289" parent="241" name="id">
+      <Position>1</Position>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="290" parent="241" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="291" parent="241" name="created_at">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="292" parent="241" name="updated_at">
+      <Position>4</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="293" parent="241" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>
